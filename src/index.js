@@ -7,7 +7,7 @@ import { createStore } from 'redux';
 
 import { Provider } from 'react-redux';
 
-function myReducers(state = { currency: '', threshold: '', apiData: [] }, action) {
+function myReducers(state = { currency: '', threshold: 0, apiData: [] }, action) {
 
     let newState = {
         currency: state.currency,
