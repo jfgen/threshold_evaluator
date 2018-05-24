@@ -7,20 +7,28 @@ import { createStore } from 'redux';
 
 import { Provider } from 'react-redux';
 
+function myReducers(state = { currency: '', threshold: '', apiData: [] }, action) {
 
-function myReducers(state = { currency: '' }, action) {
-
-    let value;
+    let newState = {
+        currency: state.currency,
+        threshold: state.threshold,
+        apiData: state.apiData
+    }
 
     switch(action.type) {
         case 'currency': 
-            value = action.currency;
+            newState.currency = action.currency;
+            newState.apiData = action.response;
             break;
 
-        default: return state;
+        case 'threshold':
+            newState.threshold = action.threshold;
+            break;
+
+        default: return newState;
     }
 
-    return {currency: value};
+    return newState;
 }
 
 const store = createStore(myReducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());

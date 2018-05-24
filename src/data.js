@@ -1,0 +1,79 @@
+const fakeData = [{
+    "date": 1405699200,
+    "high": 0.00413615,
+    "low": 0.00403986,
+    "open": 0.00404545,
+    "close": 0.00403997,
+    "volume": 4.95713239,
+    "quoteVolume": 1205.10503896,
+    "weightedAverage": 0.00411344
+}, {
+    "date": 1405699500,
+    "high": 0.00413592,
+    "low": 0.004049,
+    "open": 0.00413592,
+    "close": 0.004049,
+    "volume": 0.00258763,
+    "quoteVolume": 0.62973342,
+    "weightedAverage": 0.00410909
+}, {
+    "date": 1405699800,
+    "high": 0.004049,
+    "low": 0.00403001,
+    "open": 0.004049,
+    "close": 0.00403001,
+    "volume": 0.33166094,
+    "quoteVolume": 82.16488473,
+    "weightedAverage": 0.00403652
+}, {
+    "date": 1405700100,
+    "high": 0.00420365,
+    "low": 0.0041,
+    "open": 0.0041,
+    "close": 0.00419765,
+    "volume": 7.19060781,
+    "quoteVolume": 1724.52874226,
+    "weightedAverage": 0.0041696
+}, {
+    "date": 1405700400,
+    "high": 0.0042262,
+    "low": 0.00420011,
+    "open": 0.00420011,
+    "close": 0.00421147,
+    "volume": 1.0450791,
+    "quoteVolume": 248.06769383,
+    "weightedAverage": 0.00421287
+}, {
+    "date": 1405700700,
+    "high": 0.00431642,
+    "low": 0.0042001,
+    "open": 0.00421112,
+    "close": 0.0042001,
+    "volume": 0.63975659,
+    "quoteVolume": 152.08255482,
+    "weightedAverage": 0.00420664
+}, {
+    "date": 1405701000,
+    "high": 0.00429458,
+    "low": 0.0042011,
+    "open": 0.00429458,
+    "close": 0.0042011,
+    "volume": 0.08010965,
+    "quoteVolume": 19.06816614,
+    "weightedAverage": 0.00420122
+}, {
+    "date": 1405701300,
+    "high": 0.00425,
+    "low": 0.00418,
+    "open": 0.00418,
+    "close": 0.00425,
+    "volume": 0.1036511,
+    "quoteVolume": 24.395,
+    "weightedAverage": 0.00424886
+}];
+
+export default function fetchData() {
+    //const now = parseInt(new Date().getTime() / 1000, 10);
+
+    return Promise.resolve(fakeData);
+}

@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import fetchData from './data';
 
 import './App.css';
 
 
 const mapStateToProps  = (state) => ({
-  currency: state.currency
+  currency: state.currency,
+  threshold: state.threshold,
+  apiData: state.apiData
 });
 
 
@@ -14,34 +17,88 @@ const mapDispatchToProps = (dispatch) => {
 
     // Dispatch sends the value on #currencySelect to  myReducers()
     cryptChangeHandler: (option) => {
+      let selectedCurrency = option.target.value;
+
+      fetchData(selectedCurrency).then(function(response){
+        dispatch({
+          type: 'currency',
+          currency: selectedCurrency,
+          response
+        });
+      }) 
+    },
+    thresholdHandler: (input) => {
       dispatch({
-        type: 'currency',
-        currency: option.target.value
+        type: 'threshold',
+        threshold: input.target.value
       });
+      
     }
   }
 };
 
 class DashboardView extends Component {
-  render() {
-    
+  renderTable = () => {
+    if(this.props.apiData.length === 0) {
+      return "no data";
+    }
+
+    let filteredData = this.props.apiData.filter((item) => {
+      return item.low >= this.props.threshold;
+    })
+
+    let rows = filteredData.map((item, index) => {
+      return (
+        <tr key={index}>
+          <td>{item.date}</td>
+          <td>{item.high}</td>
+          <td>{item.low}</td>
+          <td>{item.volume}</td>
+        </tr>
+      )
+    });
+
     return (
-      <div className="dashboard__tools">
-        <div className="selector">
-          <label className="selector__label" for="currencySelect">Enter Threshold</label>
-          <select className="selector__field" id="currencySelect" name="currencySelect" value={this.props.currency} onChange={this.props.cryptChangeHandler} >
-            <option value="" disabled>Please Choose</option>
-            <option value="eth">Etherium(ETH)</option>
-            <option value="xmr">Monero(XMR)</option>
-            <option value="strat">Stratis(STRAT)</option>
-            <option value="lsk">Lisk(LSK)</option>
-            <option value="bch">Bitcoin Cash(BCH)</option>
-          </select>
+      <table className="datatable">
+        <tbody>
+          <tr>
+            <td className="datatable__collumn">time</td>
+            <td className="datatable__collumn">high</td>
+            <td className="datatable__collumn">low</td>
+            <td className="datatable__collumn">volume</td>
+          </tr>
+          {rows}
+        </tbody>
+      </table> 
+    )
+  }
+
+  render() {
+    return (
+      <div>
+        <div className="dashboard__tools">
+          <div className="selector">
+            <label className="selector__label" htmlFor="currencySelect">Enter Threshold</label>
+            <select className="selector__field" id="currencySelect" name="currencySelect" value={this.props.currency} onChange={this.props.cryptChangeHandler} >
+              <option value="" disabled>Please Choose</option>
+              <option value="eth">Etherium(ETH)</option>
+              <option value="xmr">Monero(XMR)</option>
+              <option value="strat">Stratis(STRAT)</option>
+              <option value="lsk">Lisk(LSK)</option>
+              <option value="bch">Bitcoin Cash(BCH)</option>
+            </select>
+          </div>
+          <div className="threshold">
+            <label className="selector__label" htmlFor="threshold">Enter Threshold</label>
+            <span className="uselector__unit">BTC</span>
+            <input type="number" id="threshold" name="threshold" className="threshold__field" placeholder="eg: 00,0032"
+              onChange={this.props.thresholdHandler} />
+          </div>
         </div>
-        <div className="threshold">
-          <label className="selector__label" for="threshold">Enter Threshold</label>
-          <input type="text" id="threshold" name="threshold" className="threshold__field" placeholder="eg: BTC00,00" />
-        </div>
+
+        {/*TODO: STYLE THE TABLE*/}
+        {this.renderTable()}
+
       </div>
     )
   }
@@ -50,20 +107,13 @@ class DashboardView extends Component {
 const DashboardViewConnected = connect(mapStateToProps, mapDispatchToProps)(DashboardView);
 
 class App extends Component {
+
+
   render() {
     return (
       <div className="dashboard">
         <h1 className="dashboard__title">Cryptocurrency Threshold Evaluator (past 24hrs)</h1>
         <DashboardViewConnected />
-        // TODO: STYLE THE TABLE
-        <table className="datatable">
-          <tr>
-            <td className="datatable__collumn">time</td>
-            <td className="datatable__collumn">high</td>
-            <td className="datatable__collumn">low</td>
-            <td className="datatable__collumn">volume</td>
-          </tr>
-        </table> 
       </div>
     );
   }
