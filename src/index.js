@@ -7,6 +7,7 @@ import { createStore } from 'redux';
 
 import { Provider } from 'react-redux';
 
+
 function myReducers(state = { currency: '' }, action) {
 
     let value;

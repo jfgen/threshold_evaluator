@@ -1,28 +1,51 @@
-.App {
-  text-align: center;
+body {
+  /* TODO: Google fonts */
+  font-family: arial, sans-serif;
+  font-size: 100%;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.dashboard {
+  padding: 50px 10px 50px 50px;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.dashboard__title {
+  margin-bottom: 50px;
+
+  font-size: 2em;
 }
 
-.App-title {
-  font-size: 1.5em;
+.dashboard__tools {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
-.App-intro {
-  font-size: large;
+.selector {
+  margin-bottom: 50px;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.selector__label {
+  display: block;
+  margin-bottom: 15px;
+
+  font-size: 1em;
+}
+
+.selector__field,
+.threshold__field {
+  height: 30px;
+  padding: 0 15px 0 5px;
+
+  font-size: 0.875em;
+  background: #FFF;
+}
+
+.datatable {
+  width: 100%;
+  
+  text-align: left;
+}
+
+.datatable__collumn {
+  width: 25%;
 }
