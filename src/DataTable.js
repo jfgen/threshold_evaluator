@@ -4,7 +4,12 @@ import PropTypes from 'prop-types';
 export const DataTable = (props) => {
     const renderTable = () => {
         if (props.apiData.length === 0) {
-            return "no data";
+            return (
+                <div className="no-data">
+                    <p className="no-data__text">There is no data to show yet, please select the cryptocurrency above.</p>
+                    <p className="no-data__text">You can enter a threshold to filter the data.</p>
+                </div>
+            )
         }
         let threshold = props.threshold;
 
@@ -14,12 +19,12 @@ export const DataTable = (props) => {
 
         let rows = filteredData.map((item, index) => {
             return (
-            <tr key={index}>
-                <td>{item.date}</td>
-                <td>{item.high}</td>
-                <td>{item.low}</td>
-                <td>{item.volume}</td>
-            </tr>
+                <tr className="datatable__row" key={index}>
+                    <td className="datatable__cell">{item.date}</td>
+                    <td className="datatable__cell">{item.high}</td>
+                    <td className="datatable__cell">{item.low}</td>
+                    <td className="datatable__cell">{item.volume}</td>
+                </tr>
             )
         });
 
