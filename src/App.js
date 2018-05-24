@@ -19,18 +19,21 @@ const mapDispatchToProps = (dispatch) => {
     cryptChangeHandler: (option) => {
       let selectedCurrency = option.target.value;
 
-      fetchData(selectedCurrency).then(function(response){
+      fetchData(selectedCurrency).then(function(response) {
         dispatch({
           type: 'currency',
           currency: selectedCurrency,
           response
         });
+      })
+      .catch(function(error) {
+        console.error(error);
       }) 
     },
     thresholdHandler: (input) => {
       dispatch({
         type: 'threshold',
-        threshold: input.target.value
+        threshold: Number(input.target.value)
       });
       
     }
@@ -42,9 +45,10 @@ class DashboardView extends Component {
     if(this.props.apiData.length === 0) {
       return "no data";
     }
+    let threshold = this.props.threshold;
 
     let filteredData = this.props.apiData.filter((item) => {
-      return item.low >= this.props.threshold;
+      return item.low >= threshold;
     })
 
     let rows = filteredData.map((item, index) => {
@@ -81,11 +85,11 @@ class DashboardView extends Component {
             <label className="selector__label" htmlFor="currencySelect">Enter Threshold</label>
             <select className="selector__field" id="currencySelect" name="currencySelect" value={this.props.currency} onChange={this.props.cryptChangeHandler} >
               <option value="" disabled>Please Choose</option>
-              <option value="eth">Etherium(ETH)</option>
-              <option value="xmr">Monero(XMR)</option>
-              <option value="strat">Stratis(STRAT)</option>
-              <option value="lsk">Lisk(LSK)</option>
-              <option value="bch">Bitcoin Cash(BCH)</option>
+              <option value="ETH">Etherium(ETH)</option>
+              <option value="XMR">Monero(XMR)</option>
+              <option value="STRAT">Stratis(STRAT)</option>
+              <option value="LSK">Lisk(LSK)</option>
+              <option value="BCH">Bitcoin Cash(BCH)</option>
             </select>
           </div>
           <div className="threshold">
@@ -107,7 +111,6 @@ class DashboardView extends Component {
 const DashboardViewConnected = connect(mapStateToProps, mapDispatchToProps)(DashboardView);
 
 class App extends Component {
-
 
   render() {
     return (
