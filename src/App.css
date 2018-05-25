@@ -68,6 +68,10 @@ body {
 }
 
 /* <DataTable> styles */
+.no-data__text {
+  font-size: 1.2em;
+}
+
 .spinner {
   position: absolute;
   top: 40%;
@@ -76,8 +80,25 @@ body {
   transform: translateX(-50%);
 }
 
-.no-data__text {
-  font-size: 1.2em;
+.error-paragraph {
+  height: 35px;
+
+  font-size: 1.4em;
+  line-height: 35px;
+}
+
+.error-paragraph:before {
+  display: inline-block;
+  height: 32px;
+  width: 32px;
+  border: 1px solid #d40b0b;
+  margin-right: 15px;
+  border-radius: 100%;
+
+  content: 'x';
+  text-align: center;
+  color: #d40b0b;
+  line-height: 30px;
 }
 
 .datatable {

@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch) => {
                 currency: selectedCurrency
             });
 
-            fetchData(selectedCurrency).then(function (response) {
+            fetchData(selectedCurrency).then(function(response) {
                     dispatch({
                         type: 'dataLoaded',
                         response

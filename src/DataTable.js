@@ -20,7 +20,9 @@ const DataTable = (props) => {
     }
     // Check if the Promise returned an error
     if(props.error) {
-        return "error"
+        return (
+            <p className="error-paragraph">Unfortunately it wasn't possible to get your data, please try again.</p>
+        )
     }
     
     // Either the user didn't select a cryptocurrency yet or the search didn't yield any results
