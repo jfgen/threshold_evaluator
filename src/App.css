@@ -27,10 +27,6 @@ body {
 }
 
 /* Input styles */
-.selector {
-  margin-bottom: 50px;
-}
-
 .selector__label {
   display: block;
   margin-bottom: 15px;
@@ -38,17 +34,48 @@ body {
   font-size: 1em;
 }
 
-.selector__field,
-.threshold__field {
+.dashboard__input {
+  display: inline-block;
+  margin: 0 0 50px 0;
   height: 30px;
   padding: 0 15px 0 5px;
-  border: 1px solid #f1f1f1;
+  border: 1px solid #F1F1F1;
 
+  line-height: 35px;
   font-size: 0.875em;
   background: #FFF;
 }
 
+.dashboard__input:focus {
+  outline: 1px solid #00bfe6;
+}
+
+.threshold__field {
+  border-left: none;
+}
+
+.selector__prefix {
+  display: inline-block;
+  height: 30px;
+  border: 1px solid #F1F1F1;
+  border-right: none;
+  padding: 0 7px;
+
+  background-color: #F2F2F2;
+  font-size: 0.875em;
+  vertical-align: top;
+  line-height: 30px;
+}
+
 /* <DataTable> styles */
+.spinner {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+
+  transform: translateX(-50%);
+}
+
 .no-data__text {
   font-size: 1.2em;
 }
@@ -73,9 +100,28 @@ body {
   background: #f2f2f2;
 }
 
+.datatable__row:hover {
+  outline: 1px solid #00bfe6;
+}
+
 .datatable__header, 
 .datatable__cell {
   padding: 7px;
   border: 1px solid #f1f1f1;
   
+}
+
+@media only screen and (max-width: 767px) {
+  .dashboard {
+    padding: 30px 20px;
+  }
+
+  .dashboard__title {
+    text-align: center;
+    font-size: 1.6em;
+  }
+
+  .dashboard__tools {
+    flex-wrap: wrap;
+  }
 }

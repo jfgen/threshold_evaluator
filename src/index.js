@@ -7,22 +7,43 @@ import { createStore } from 'redux';
 
 import { Provider } from 'react-redux';
 
-function myReducers(state = { currency: '', threshold: 0, apiData: [] }, action) {
+const defaultStates = {
+    currency: '',
+    threshold: 0,
+    apiData: [],
+    loading: false,
+    error: null
+};
+
+function myReducers(state = defaultStates, action) {
 
     let newState = {
         currency: state.currency,
         threshold: state.threshold,
-        apiData: state.apiData
+        apiData: state.apiData,
+        loading: state.loading
     }
 
     switch(action.type) {
-        case 'currency': 
-            newState.currency = action.currency;
+        case 'dataLoaded': 
             newState.apiData = action.response;
+            newState.loading = false;
             break;
 
         case 'threshold':
             newState.threshold = action.threshold;
+            break;
+
+        case 'loading':
+            newState.loading = true;
+            newState.currency = action.currency;
+            
+            break;
+
+        case 'error':
+            newState.loading = false;
+            newState.error = action.error;
+
             break;
 
         default: return newState;

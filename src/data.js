@@ -12,7 +12,7 @@ export default function fetchData(selectedCurrency) {
                         if(response.ok) {
                             return response.json();
                         }
-                        throw new Error('Failed to fetch API data');
+                        return Promise.reject(new Error('Failed to fetch API data'));
                     });
 
     return data;

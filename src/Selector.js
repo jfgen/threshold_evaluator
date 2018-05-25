@@ -16,15 +16,24 @@ const mapDispatchToProps = (dispatch) => {
         cryptoChangeHandler: (option) => {
             let selectedCurrency = option.target.value;
 
+            dispatch({
+                type: 'loading',
+                loading: true,
+                currency: selectedCurrency
+            });
+
             fetchData(selectedCurrency).then(function (response) {
                     dispatch({
-                        type: 'currency',
-                        currency: selectedCurrency,
+                        type: 'dataLoaded',
                         response
                     });
                 })
                 .catch(function (error) {
                     console.error(error);
+                    dispatch({
+                        type: 'error',
+                        error
+                    });
                 })
         }
     }
@@ -35,7 +44,7 @@ const Selector = (props) => {
         <div className="selector">
             <label className="selector__label" htmlFor="currencySelect">Enter Threshold</label>
             <select
-                className="selector__field"
+                className="dashboard__input"
                 id="currencySelect"
                 name="currencySelect"
                 value={props.currency} 

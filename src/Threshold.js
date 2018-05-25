@@ -24,13 +24,14 @@ const Threshold = (props) => {
     return(
         <div className="threshold">
             <label className="selector__label" htmlFor="threshold">Enter Threshold</label>
-            <span className="selector__unit">BTC</span>
+            <span className="selector__prefix">BTC</span>
             <input 
                 type="number"
                 id="threshold"
                 name="threshold"
-                className="threshold__field" 
+                className="dashboard__input" 
                 placeholder="eg: 00,0032"
+                step="0.001"
                 onChange={props.thresholdHandler} 
             />
         </div>
