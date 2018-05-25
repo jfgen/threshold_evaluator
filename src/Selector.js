@@ -1,12 +1,46 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-export const Selector = (props) => {
+import fetchData from './data';
+
+const mapStateToProps = (state) => ({
+    currency: state.currency
+});
+
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+
+        // Dispatch sends the value on #currencySelect to  myReducers()
+        cryptoChangeHandler: (option) => {
+            let selectedCurrency = option.target.value;
+
+            fetchData(selectedCurrency).then(function (response) {
+                    dispatch({
+                        type: 'currency',
+                        currency: selectedCurrency,
+                        response
+                    });
+                })
+                .catch(function (error) {
+                    console.error(error);
+                })
+        }
+    }
+};
+
+const Selector = (props) => {
     return(
         <div className="selector">
             <label className="selector__label" htmlFor="currencySelect">Enter Threshold</label>
-            <select className="selector__field" id="currencySelect" name="currencySelect"
-             value={props.value} onChange={props.selectChange} >
+            <select
+                className="selector__field"
+                id="currencySelect"
+                name="currencySelect"
+                value={props.currency} 
+                onChange={props.cryptoChangeHandler}
+            >
                 <option value="" disabled>Please Choose</option>
                 <option value="ETH">Etherium(ETH)</option>
                 <option value="XMR">Monero(XMR)</option>
@@ -22,3 +56,7 @@ Selector.propTypes = {
     value: PropTypes.string,
     selectChange: PropTypes.func 
 }
+
+const SelectorConnected = connect(mapStateToProps, mapDispatchToProps)(Selector);
+
+export default SelectorConnected;

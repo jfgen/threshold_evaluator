@@ -8,13 +8,16 @@ body {
 }
 
 .dashboard {
-  padding: 50px 10px 50px 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px;
 }
 
 .dashboard__title {
   margin-bottom: 50px;
 
   font-size: 2em;
+  color: #00bfe6;
 }
 
 .dashboard__tools {
@@ -39,6 +42,7 @@ body {
 .threshold__field {
   height: 30px;
   padding: 0 15px 0 5px;
+  border: 1px solid #f1f1f1;
 
   font-size: 0.875em;
   background: #FFF;
