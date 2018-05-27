@@ -51,9 +51,9 @@ const DataTable = (props) => {
         return (
             <tr className="datatable__row" key={index}>
                 <td className="datatable__cell">{`${shortDate} ${time}`}</td>
-                <td className="datatable__cell">{item.high}</td>
-                <td className="datatable__cell">{item.low}</td>
-                <td className="datatable__cell">{item.volume}</td>
+                <td className="datatable__cell">{item.high.toFixed(3)}</td>
+                <td className="datatable__cell">{item.low.toFixed(3)}</td>
+                <td className="datatable__cell">{item.volume.toFixed(2)}</td>
             </tr>
         )
     });
