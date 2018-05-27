@@ -26,28 +26,23 @@ class App extends Component {
 
     return (
       <div className="dashboard">
-        <div className="topbar">
-          Welcome user,
-                {
-                  !isAuthenticated() && ( 
-                    <button onClick = {() => {this.login()}} >
-                      Log In 
-                    </button>
-                  )
-                } {
-                  isAuthenticated() && ( 
-                    <button onClick = {() => {this.logout()}}>
-                      Log Out
-                    </button>
-                  )
-                }
-        </div>
+        {
+          isAuthenticated() && ( 
+            <div className="topbar">
+               Welcome user,
+              <button onClick = {() => {this.logout()}}>
+                Log Out
+              </button>
+            </div>
+          )
+        }
         <h1 className="dashboard__title">Cryptocurrency Threshold Evaluator (past 24hrs)</h1>
         <div>
           {!isAuthenticated() && ( 
-              <button onClick = {() => {this.login()}} >
-                Log In 
-              </button>
+            <p className="notice">
+              Please <button onClick = {() => {this.login()}} >Log In</button> to access our tools.
+            </p>
+
             )
           } {
             isAuthenticated() && ( 
