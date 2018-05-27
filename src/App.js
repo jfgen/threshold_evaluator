@@ -37,12 +37,14 @@ class App extends Component {
           )
         }
         <h1 className="dashboard__title">Cryptocurrency Threshold Evaluator (past 24hrs)</h1>
-        <div>
           {!isAuthenticated() && ( 
-            <p className="notice">
-              Please <button onClick = {() => {this.login()}} >Log In</button> to access our tools.
+          <div className="notice">
+            
+            <p className="notice__text">
+              Please log in to access our tools.
             </p>
-
+            <button className="notice_button" onClick = {() => {this.login()}} >Log In</button>
+          </div>
             )
           } {
             isAuthenticated() && ( 
@@ -55,7 +57,6 @@ class App extends Component {
               </div>
             )
           }
-        </div>
       </div>
     );
   }
