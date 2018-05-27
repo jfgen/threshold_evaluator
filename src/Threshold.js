@@ -2,10 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+// Getting redux states and mapping them as props to be consumed by the component
 const mapStateToProps = (state) => ({
     threshold: state.threshold
 });
 
+// Getting redux dispatchers and mapping them as props to be consumed by the component
 const mapDispatchToProps = (dispatch) => {
     return {
 
@@ -39,7 +41,7 @@ const Threshold = (props) => {
 }
 
 Threshold.propTypes = {
-    changeHandler: PropTypes.func
+    threshold: PropTypes.number
 }
 
 const ThresholdConnected = connect(mapStateToProps, mapDispatchToProps)(Threshold);

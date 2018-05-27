@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { DateTime } from 'luxon';
 
+// Getting redux states and mapping them as props to be consumed by the component
 const mapStateToProps = (state) => ({
-    currency: state.currency,
     threshold: state.threshold,
-    apiData: state.apiData,
-    loading: state.loading,
+    apiData: state.apiData, // a
+    loading: state.loading, // boolean
     error: state.error
 });
 
@@ -77,7 +77,9 @@ const DataTable = (props) => {
 
 DataTable.propTypes = {
     apiData: PropTypes.array,
-    threshold: PropTypes.number
+    threshold: PropTypes.number,
+    loading: PropTypes.bool,
+    error: PropTypes.object
 }
 
 const DataTableConnected = connect(mapStateToProps)(DataTable);

@@ -4,11 +4,12 @@ import { connect } from 'react-redux';
 
 import fetchData from './data';
 
+// Getting redux states and mapping them as props to be consumed by the component
 const mapStateToProps = (state) => ({
     currency: state.currency
 });
 
-
+// Getting redux dispatchers and mapping them as props to be consumed by the component
 const mapDispatchToProps = (dispatch) => {
     return {
 
@@ -62,8 +63,7 @@ const Selector = (props) => {
 }
 
 Selector.propTypes = {
-    value: PropTypes.string,
-    selectChange: PropTypes.func 
+    currency: PropTypes.string
 }
 
 const SelectorConnected = connect(mapStateToProps, mapDispatchToProps)(Selector);
