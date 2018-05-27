@@ -42,7 +42,7 @@ const mapDispatchToProps = (dispatch) => {
 const Selector = (props) => {
     return(
         <div className="selector">
-            <label className="selector__label" htmlFor="currencySelect">Enter Threshold</label>
+            <label className="selector__label" htmlFor="currencySelect">Select a Cryptocurrency</label>
             <select
                 className="dashboard__input"
                 id="currencySelect"

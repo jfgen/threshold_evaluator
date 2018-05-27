@@ -29,7 +29,7 @@ const Threshold = (props) => {
                 id="threshold"
                 name="threshold"
                 className="dashboard__input" 
-                placeholder="eg: 00,0032"
+                placeholder="eg: 0,0032"
                 step="0.001"
                 onChange={props.thresholdHandler} 
             />
