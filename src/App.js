@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Auth from './Auth/Auth.js';
 
 import './App.css';
 
@@ -7,8 +6,6 @@ import Selector from './Selector';
 import Threshold from './Threshold';
 import DataTable from './DataTable';
 
-
-const auth = new Auth();
 
 class App extends Component {
   goTo = (route) => {
@@ -23,11 +20,9 @@ class App extends Component {
     this.props.auth.logout();
   }
 
-
   render() {
-    if(this.props.auth) {
-      const { isAuthenticated } = this.props.auth;
-    }
+    
+    const { isAuthenticated } = this.props.auth;
 
     return (
       <div className="dashboard">
@@ -49,12 +44,22 @@ class App extends Component {
         </div>
         <h1 className="dashboard__title">Cryptocurrency Threshold Evaluator (past 24hrs)</h1>
         <div>
-          <div className="dashboard__tools">
-            <Selector />
-            <Threshold />
-          </div>
-          <DataTable />
-
+          {!isAuthenticated() && ( 
+              <button onClick = {() => {this.login()}} >
+                Log In 
+              </button>
+            )
+          } {
+            isAuthenticated() && ( 
+              <div>
+                <div className="dashboard__tools">
+                  <Selector />
+                  <Threshold />
+                </div>
+                <DataTable />
+              </div>
+            )
+          }
         </div>
       </div>
     );
