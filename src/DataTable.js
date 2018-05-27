@@ -62,7 +62,7 @@ const DataTable = (props) => {
         <table className="datatable">
             <thead>
                 <tr>
-                    <th className="datatable__header">time</th>
+                    <th className="datatable__header">time (5m interval)</th>
                     <th className="datatable__header">high</th>
                     <th className="datatable__header">low</th>
                     <th className="datatable__header">volume</th>

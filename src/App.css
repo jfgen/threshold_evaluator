@@ -54,7 +54,7 @@ body {
   border-left: none;
 }
 
-.selector__prefix {
+.selector__sufix {
   display: inline-block;
   height: 30px;
   border: 1px solid #F1F1F1;
