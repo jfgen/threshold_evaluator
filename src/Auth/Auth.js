@@ -3,6 +3,7 @@ import auth0 from 'auth0-js';
 
 
 export default class Auth {
+    
     auth0 = new auth0.WebAuth({
         domain: 'threshold.eu.auth0.com',
         clientID: 'p761QEvGdACDqD7n_o90vBpxKyx2ge8J',
@@ -20,7 +21,7 @@ export default class Auth {
         this.auth0.parseHash((err, authResult) => {
             if (authResult && authResult.accessToken && authResult.idToken) {
                 this.setSession(authResult);
-                history.replace('/');
+                history.replace('/dashboard');
             } else if (err) {
                 history.replace('/');
                 console.log(err);
@@ -36,7 +37,7 @@ export default class Auth {
         localStorage.setItem('id_token', authResult.idToken);
         localStorage.setItem('expires_at', expiresAt);
         // navigate to the home route
-        history.replace('/');
+        history.replace('/dashboard');
     }
 
     logout = () => {
@@ -53,5 +54,25 @@ export default class Auth {
         // access token's expiry time
         let expiresAt = JSON.parse(localStorage.getItem('expires_at'));
         return new Date().getTime() < expiresAt;
+    }
+
+    userProfile;
+
+    getAccessToken = () => {
+        const accessToken = localStorage.getItem('access_token');
+        if (!accessToken) {
+            throw new Error('No Access Token found');
+        }
+        return accessToken;
+    }
+
+    getProfile = (cb) => {
+        let accessToken = this.getAccessToken();
+        this.auth0.client.userInfo(accessToken, (err, profile) => {
+            if (profile) {
+                this.userProfile = profile;
+            }
+            cb(err, profile);
+        });
     }
 }
